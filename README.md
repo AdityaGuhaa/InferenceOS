@@ -1,4 +1,4 @@
-# InferenceOS 🧠⚡️
+# InferenceOS
 
 ![Electron Version](https://img.shields.io/badge/Electron-v30.0.0-blue?style=for-the-badge&logo=electron)
 ![Node.js](https://img.shields.io/badge/Node.js-Backend-green?style=for-the-badge&logo=node.js)
@@ -9,34 +9,44 @@
 
 ---
 
-## 🌟 Key Features
+## About the Project
 
-### 🔄 Universal Memory System (UMS)
+The AI landscape is fragmented. Developers, researchers, and power users often find themselves juggling multiple browser tabs, subscription plans, and fragmented chat histories just to interact with different language models. 
+
+**InferenceOS** solves this by acting as a central operating system for all your AI interactions. It is designed from the ground up for users who are seriously interested in LLMs and development work. Instead of relying on web wrappers, InferenceOS integrates directly with the native APIs of the world's most powerful models (OpenAI, Anthropic, Google Gemini, Groq) alongside an offline, highly-optimized local C++ inference engine.
+
+Whether you need the heavy-duty coding capabilities of Gemini 3.1 Pro, the creative writing of Claude Opus, or the absolute privacy of a locally hosted Llama 3 model, InferenceOS provides a seamless, unified, and secure environment. You maintain full ownership of your API keys—encrypted securely in your local macOS Keychain—and your chat history, allowing you to instantly switch between models mid-conversation without ever losing context.
+
+---
+
+## Key Features
+
+### Universal Memory System (UMS)
 Never lose context when switching models. InferenceOS features true **ChatGPT-style Chat Branching**, allowing you to maintain multiple independent conversation threads.
 *   **Persistent Threads:** All chats are automatically saved and restored on startup.
 *   **Model Agnostic:** Start a conversation with Gemini, switch to OpenAI, and finish with Anthropic—all within the same thread. The context follows you.
 
-### 🛡️ Secure Vault
+### Secure Vault
 Your API keys are yours. InferenceOS leverages Electron's `safeStorage` API to encrypt your provider keys and store them securely within the native macOS Keychain. Keys are never saved in plaintext.
 
-### 🌐 Multi-Provider Cloud Integration
+### Multi-Provider Cloud Integration
 Instantly access the latest frontier models via their native APIs:
 *   **Google Gemini:** Full support for the latest 2026 Gemini 3.x series (`3.1-pro-preview`, `3.5-flash`) and stable 2.5 models. (Includes automatic role-merging logic to prevent `400 Bad Request` errors).
 *   **OpenAI:** ChatGPT 3.5 Turbo, GPT-4, etc.
 *   **Anthropic:** Claude 3 Haiku, Sonnet, Opus.
 *   **Groq:** Blazing fast Llama 3 inference.
 
-### 💻 Local C++ Inference Engine
+### Local C++ Inference Engine
 Off grid? No problem. InferenceOS ships with a custom C++ backend (`InferenceEngine`) running as a highly optimized child process. Chat with local models (like Llama 3) with zero latency and complete privacy.
 
-### 🎨 Stunning UI/UX
+### Stunning UI/UX
 *   **Glassmorphism Design:** A premium, translucent dark-mode aesthetic with smooth micro-animations.
 *   **Native macOS Integration:** Features a `hiddenInset` title bar for that seamless, native Apple feel.
 *   **Robust Error Handling:** API quotas, 404s, and network drops are caught gracefully and printed into the chat bubble instead of crashing the app. (Long error strings perfectly wrap to prevent UI breakage!)
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 The app is built on a robust Electron + Node.js architecture with a C++ sidecar:
 
@@ -58,7 +68,7 @@ graph TD;
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 *   macOS
@@ -69,7 +79,7 @@ graph TD;
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/InferenceOS.git
+   git clone https://github.com/AdityaGuhaa/InferenceOS.git
    cd InferenceOS
    ```
 
@@ -91,7 +101,7 @@ graph TD;
 
 ---
 
-## 🛠️ Development & Troubleshooting
+## Development & Troubleshooting
 
 *   **Gemini 400 Errors:** InferenceOS handles Google's strict "alternating roles" requirement under the hood by merging consecutive messages from the same role. 
 *   **Gemini 404 Errors:** The model dropdown is hardcoded to the latest 2026 API strings (e.g., `gemini-3.5-flash`). If you receive a 404 or Quota error, check your Google AI Studio billing/region availability.
@@ -99,4 +109,4 @@ graph TD;
 
 ---
 
-*Built with ❤️ for macOS power users who demand the best of both local and cloud AI.*
+*Built for macOS power users who demand the best of both local and cloud AI.*
