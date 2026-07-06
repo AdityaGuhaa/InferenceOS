@@ -25,7 +25,9 @@ app.whenReady().then(() => {
   createWindow()
 
   // Start C++ backend
-  const backendPath = path.join(__dirname, 'backend', 'build', 'InferenceEngine')
+  const backendPath = app.isPackaged 
+    ? path.join(process.resourcesPath, 'backend', 'build', 'InferenceEngine')
+    : path.join(__dirname, 'backend', 'build', 'InferenceEngine')
   backendProcess = spawn(backendPath)
   
   backendProcess.stdout.on('data', (data) => {

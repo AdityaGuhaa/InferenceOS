@@ -4,9 +4,29 @@
   "description": "macOS AI App with C++ backend",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.adityaguha.inferenceos",
+    "productName": "InferenceOS-Beta-V0.1",
+    "artifactName": "InferenceOS-Beta-V0.1.${ext}",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": ["dmg"],
+      "icon": "icon.png"
+    },
+    "extraResources": [
+      {
+        "from": "backend/build",
+        "to": "backend/build",
+        "filter": ["InferenceEngine"]
+      }
+    ]
   },
   "devDependencies": {
-    "electron": "^30.0.0"
+    "electron": "^30.0.0",
+    "electron-builder": "^26.15.3"
   }
 }
