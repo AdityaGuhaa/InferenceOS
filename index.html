@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>InferenceOS</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="titlebar"></div>
+  
+  <div class="app-container" id="app-container">
+    <!-- View: Welcome -->
+    <div class="view active" id="view-welcome">
+      <div class="glass-panel">
+        <h1>InferenceOS</h1>
+        <p>Choose your intelligence engine.</p>
+        <div class="button-group" id="welcome-buttons">
+          <button class="btn primary" id="btn-continue" style="display: none;" onclick="continueToChat()">Continue to Chat</button>
+          <button class="btn secondary" onclick="showView('view-cloud')">Manage API Keys</button>
+          <button class="btn secondary" onclick="showView('view-local')">Run Local LLM</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Cloud Setup -->
+    <div class="view" id="view-cloud">
+      <div class="glass-panel">
+        <h2>Cloud AI Setup</h2>
+        <div class="form-group">
+          <label>Select Provider</label>
+          <select id="cloud-provider">
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic Claude</option>
+            <option value="gemini">Google Gemini</option>
+            <option value="groq">Groq</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>API Key</label>
+          <input type="password" id="api-key-input" placeholder="sk-...">
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="showView('view-welcome')">Back</button>
+          <button class="btn primary" onclick="saveKeyAndChat()">Proceed</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Local Setup -->
+    <div class="view" id="view-local">
+      <div class="glass-panel">
+        <h2>Local LLM Setup</h2>
+        <p>Download a model via Hugging Face.</p>
+        <div class="form-group">
+          <label>Hugging Face Repo / Model</label>
+          <input type="text" id="hf-model-input" placeholder="e.g. microsoft/Phi-3-mini-4k-instruct-gguf">
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="showView('view-welcome')">Back</button>
+          <button class="btn primary" onclick="downloadModel()">Download & Run</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- View: Chat -->
+    <div class="view chat-view" id="view-chat">
+      <div class="sidebar glass-panel">
+        <h3>Models</h3>
+        <ul id="model-list">
+          <li class="active" data-model="openai">OpenAI</li>
+          <li data-model="anthropic">Anthropic</li>
+          <li data-model="gemini">Gemini</li>
+          <li data-model="groq">Groq</li>
+          <li data-model="local">Llama 3 (Local)</li>
+        </ul>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; margin-bottom: 10px;">
+          <h3 style="margin: 0;">Chats</h3>
+          <button class="btn" style="padding: 2px 8px; font-size: 14px;" onclick="createNewChat()">+</button>
+        </div>
+        <ul id="chat-thread-list" style="flex: 1; overflow-y: auto;">
+          <!-- Dynamically populated -->
+        </ul>
+        
+        <button class="btn" style="margin-top:10px;" onclick="showView('view-welcome')">Settings</button>
+      </div>
+      <div class="chat-main">
+        <div class="chat-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.1); border-radius: 12px 12px 0 0;">
+          <span id="current-provider-name" style="font-weight: 600; color: var(--text-main);">OpenAI</span>
+          <select id="specific-model-select" style="background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; padding: 8px 12px; border-radius: 6px; outline: none;">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div class="chat-history" id="chat-history">
+          <div class="message ai">Hello! I'm ready. How can I help you today?</div>
+        </div>
+        <div class="chat-input-area glass-panel">
+          <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+          <button class="btn primary" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

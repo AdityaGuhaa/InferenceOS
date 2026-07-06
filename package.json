@@ -1,0 +1,12 @@
+{
+  "name": "inferenceos",
+  "version": "1.0.0",
+  "description": "macOS AI App with C++ backend",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^30.0.0"
+  }
+}
