@@ -8,13 +8,15 @@
 </head>
 <body>
   <div class="titlebar"></div>
+  <img src="IMG_8517.JPG" class="app-global-logo" alt="Logo">
   
   <div class="app-container" id="app-container">
     <!-- View: Welcome -->
     <div class="view active" id="view-welcome">
+      <h1 class="aesthetic-title">InferenceOS</h1>
+      <div class="aesthetic-author">by Aditya Guha</div>
       <div class="glass-panel">
-        <h1>InferenceOS</h1>
-        <p>Choose your intelligence engine.</p>
+        <p class="aesthetic-subtitle">Choose your intelligence engine.</p>
         <div class="button-group" id="welcome-buttons">
           <button class="btn primary" id="btn-continue" style="display: none;" onclick="continueToChat()">Continue to Chat</button>
           <button class="btn secondary" onclick="showView('view-cloud')">Manage API Keys</button>
@@ -65,7 +67,7 @@
 
     <!-- View: Chat -->
     <div class="view chat-view" id="view-chat">
-      <div class="sidebar glass-panel">
+      <div class="sidebar">
         <h3>Models</h3>
         <ul id="model-list">
           <li class="active" data-model="openai">OpenAI</li>
@@ -86,16 +88,16 @@
         <button class="btn" style="margin-top:10px;" onclick="showView('view-welcome')">Settings</button>
       </div>
       <div class="chat-main">
-        <div class="chat-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.1); border-radius: 12px 12px 0 0;">
-          <span id="current-provider-name" style="font-weight: 600; color: var(--text-main);">OpenAI</span>
-          <select id="specific-model-select" style="background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; padding: 8px 12px; border-radius: 6px; outline: none;">
+        <div class="chat-header">
+          <span id="current-provider-name">OpenAI</span>
+          <select id="specific-model-select">
             <!-- Populated dynamically -->
           </select>
         </div>
         <div class="chat-history" id="chat-history">
           <div class="message ai">Hello! I'm ready. How can I help you today?</div>
         </div>
-        <div class="chat-input-area glass-panel">
+        <div class="chat-input-area">
           <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
           <button class="btn primary" onclick="sendMessage()">Send</button>
         </div>
