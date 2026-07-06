@@ -22,7 +22,17 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Compile C++ Backend
+      run: |
+        cd backend
+        mkdir -p build
+        cd build
+        cmake ..
+        make
+
     - name: Build DMG
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run dist
 
     - name: Upload DMG Artifact
